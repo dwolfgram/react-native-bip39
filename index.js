@@ -1,6 +1,7 @@
 let Buffer = require('safe-buffer').Buffer
 let Hash = require('hash.js')
 let randomBytes = require('react-native-randombytes').randomBytes
+let createHash = require('create-hash')
 
 // use unorm until String.prototype.normalize gets better browser support
 let unorm = require('unorm')
