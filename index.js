@@ -1,6 +1,5 @@
 let Buffer = require('safe-buffer').Buffer
 let Hash = require('hash.js')
-let pbkdf2 = require('react-native-fast-crypto').pbkdf2.deriveAsync
 let randomBytes = require('react-native-randombytes').randomBytes
 
 // use unorm until String.prototype.normalize gets better browser support
@@ -51,17 +50,17 @@ function salt (password) {
   return 'mnemonic' + (password || '')
 }
 
-async function mnemonicToSeed (mnemonic, password) {
-  let mnemonicBuffer = Buffer.from(unorm.nfkd(mnemonic), 'utf8')
-  let saltBuffer = Buffer.from(salt(unorm.nfkd(password)), 'utf8')
+// async function mnemonicToSeed (mnemonic, password) {
+//   let mnemonicBuffer = Buffer.from(unorm.nfkd(mnemonic), 'utf8')
+//   let saltBuffer = Buffer.from(salt(unorm.nfkd(password)), 'utf8')
 
-  // return pbkdf2(mnemonicBuffer, saltBuffer, 2048, 64, 'sha512')
-  return pbkdf2(mnemonicBuffer, saltBuffer, 2048, 64, 'sha512')
-}
+//   // return pbkdf2(mnemonicBuffer, saltBuffer, 2048, 64, 'sha512')
+//   return pbkdf2(mnemonicBuffer, saltBuffer, 2048, 64, 'sha512')
+// }
 
-async function mnemonicToSeedHex (mnemonic, password) {
-  return mnemonicToSeed(mnemonic, password).toString('hex')
-}
+// async function mnemonicToSeedHex (mnemonic, password) {
+//   return mnemonicToSeed(mnemonic, password).toString('hex')
+// }
 
 function mnemonicToEntropy (mnemonic, wordlist) {
   wordlist = wordlist || DEFAULT_WORDLIST
@@ -141,8 +140,8 @@ function validateMnemonic (mnemonic, wordlist) {
 }
 
 module.exports = {
-  mnemonicToSeed: mnemonicToSeed,
-  mnemonicToSeedHex: mnemonicToSeedHex,
+  // mnemonicToSeed: mnemonicToSeed,
+  // mnemonicToSeedHex: mnemonicToSeedHex,
   mnemonicToEntropy: mnemonicToEntropy,
   entropyToMnemonic: entropyToMnemonic,
   generateMnemonic: generateMnemonic,
